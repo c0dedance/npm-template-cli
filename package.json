@@ -1,0 +1,77 @@
+{
+  "name": "pkg",
+  "version": "0.0.0",
+  "description": "pkg",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "lint": "eslint --fix --ext .ts,.tsx,.js,.jsx --quiet ./",
+    "test": "vitest run",
+    "release": "tsx ./scripts/release.ts",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "format:docs": "prettier --write \"docs/**/*.md\""
+  },
+  "bin": {
+    "cmd": "bin/cmd.js"
+  },
+  "files": [
+    "dist",
+    "bin",
+    "README.md",
+    "src/shared"
+  ],
+  "simple-git-hooks": {
+    "pre-commit": "npx --no -- lint-staged",
+    "commit-msg": "npx --no-install commitlint --edit \"$1\""
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,tsx,ts}": [
+      "eslint --fix"
+    ],
+    "*.{md,json}": [
+      "prettier --write --no-error-on-unmatched-pattern"
+    ]
+  },
+  "author": "c0dedance",
+  "keywords": [],
+  "license": "MIT",
+  "packageManager": "pnpm@8.9.0",
+  "devDependencies": {
+    "@commitlint/cli": "^17.7.2",
+    "@commitlint/config-conventional": "^17.7.0",
+    "@types/fs-extra": "^11.0.2",
+    "@types/node": "^20.8.4",
+    "@typescript-eslint/eslint-plugin": "^6.7.5",
+    "@typescript-eslint/parser": "^6.7.5",
+    "chalk": "^5.3.0",
+    "commitlint": "^17.7.2",
+    "conventional-changelog-cli": "^4.1.0",
+    "enquirer": "^2.4.1",
+    "eslint": "^8.51.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "execa": "5.1.1",
+    "lint-staged": "^14.0.1",
+    "minimist": "^1.2.8",
+    "prettier": "^3.0.3",
+    "semver": "^7.5.4",
+    "simple-git-hooks": "^2.9.0",
+    "tsup": "^7.2.0",
+    "tsx": "^3.13.0",
+    "typescript": "^5.2.2",
+    "vitest": "^0.34.6"
+  },
+  "dependencies": {
+    "cac": "^6.7.14",
+    "compression": "^1.7.4",
+    "fast-glob": "^3.3.1",
+    "fs-extra": "^11.1.1",
+    "github-slugger": "^2.0.0",
+    "ora": "^6.1.2",
+    "polka": "^0.5.2",
+    "sirv": "^2.0.3"
+  }
+}
